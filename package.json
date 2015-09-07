@@ -1,0 +1,96 @@
+{
+  "title": "comunio login assistant",
+  "name": "cm-assistant",
+  "version": "0.0.1",
+  "description": "the addon helps you to login into your comnuio account, especially usefull in times of high trafic",
+  "main": "index.js",
+  "author": "esnowd",
+  "engines": {
+    "firefox": ">=38.0a1",
+    "fennec": ">=38.0a1"
+  },
+  "license": "MIT",
+
+  "preferences": [
+  {
+    "name": "passwordmanager",
+    "type": "radio",
+    "title": "login data",
+    "value": "manager",
+    "options": [
+        {
+            "value": "manager",
+            "label": "use login data from Firefox's Password Manager"
+        },
+        {
+            "value": "nonmanager",
+            "label": "use login data from fields below"
+        }
+    ]
+},
+    
+    {
+        "name": "username",
+        "type": "string",
+        "value": "",
+        "title": "username"
+    },
+    {
+        "name": "password",
+        "type": "string",
+        "value": "",
+        "title": "password"
+    },
+  {
+    "name": "background",
+    "type": "radio",
+    "title": "background",
+    "description": "open new comnuio tab in background",
+    "value": "backgroundyes",
+    "options": [
+        {
+            "value": "backgroundyes",
+            "label": "yes"
+        },
+        {
+            "value": "backgroundno",
+            "label": "no"
+        }
+    ]
+},
+  {
+    "name": "activatetab",
+    "type": "radio",
+    "title": "activate tab",
+    "description": "when login is sucessfull activate the comunio tab",
+    "value": "activateyes",
+    "options": [
+        {
+            "value": "activateyes",
+            "label": "yes"
+        },
+        {
+            "value": "activateno",
+            "label": "no"
+        }
+    ]
+},
+  {
+    "name": "autologin",
+    "type": "radio",
+    "title": "permanent on",
+    "description": "enables login manger assistant, everytime you browse to a comunio webpage the assistant gets active ",
+    "value": "autologinno",
+    "options": [
+        {
+            "value": "autologinyes",
+            "label": "yes"
+        },
+        {
+            "value": "autologinno",
+            "label": "no"
+        }
+    ]
+}
+  ]
+}
