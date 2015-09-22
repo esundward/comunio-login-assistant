@@ -9,6 +9,7 @@ var prefsmodul= require("sdk/simple-prefs");
 var passwordmodul=require("sdk/passwords");
 var pagemodmodul = require("sdk/page-mod");
 
+
 var username
 var password
 var clicktoggle=false
@@ -24,9 +25,9 @@ var button = buttons.ActionButton({
 					    },
 	        onClick: handleClick
 });
-
+//auto login
 pagemodmodul.PageMod({
-	include: ["http://www.comunio.de/","http://www.comunio.de/login.phtml"],
+	include: ["http://www.comunio.de","http://www.comunio.de/","htpps://www.comunio.de/login.phtml","http://www.classic.comunio.de/login.phtml","https://classic.comunio.de/login.phtml"],
 	contentScriptWhen: "ready",
 	contentScriptFile: "./my-script.js",
 	attachTo: "top",
@@ -45,6 +46,7 @@ pagemodmodul.PageMod({
 		}
 	}
 });
+// when login sucesfull change icon to green
 pagemodmodul.PageMod({
 	include: "http://www.comunio.de/team_news.phtml",
 	contentScriptWhen: "ready",
@@ -57,6 +59,21 @@ pagemodmodul.PageMod({
 				}
 				wworker.tab.on("close",defaulticon);
 			}
+});
+// calculate account balance
+pagemodmodul.PageMod({
+	include: "http://www.comunio.de/exchangemarket.phtml?viewoffers_x=*",
+	contentScriptWhen: "ready",
+	contentScriptFile: self.data.url("accountbalance.js"),
+	attachTo: "top",
+});
+// highlight exchangemarket
+pagemodmodul.PageMod({
+	include: "http://www.comunio.de/exchangemarket.phtml",
+	contentScriptWhen: "end",
+	//attachTo: "existing",
+	contentScriptFile: self.data.url("exchangemarket2.js"),
+	contentStyleFile: "./style.css",
 });
 
 // action for icon click
@@ -81,6 +98,7 @@ function yellowicon(state) {
 }
 // login process
 function login(worker){
+		// check if username and password is stored inside passwordmanager
 		if (prefsmodul.prefs.passwordmanager=="manager"){
 			passwordmodul.search({
 				url: "http://www.comunio.de",
@@ -94,6 +112,7 @@ function login(worker){
 			});
 			
 		}
+		// use username and password form properties of the addon
 		else{
 			username=prefsmodul.prefs.username;
 			password=prefsmodul.prefs.password;
