@@ -27,7 +27,7 @@ var button = buttons.ActionButton({
 });
 //auto login
 pagemodmodul.PageMod({
-	include: ["http://www.comunio.de","http://www.comunio.de/","htpps://www.comunio.de/login.phtml","http://www.classic.comunio.de/login.phtml","https://classic.comunio.de/login.phtml"],
+	include: ["http://www.comunio.de","http://www.comunio.de/","http://www.comunio.de/login.phtml","http://www.classic.comunio.de/login.phtml","https://classic.comunio.de/login.phtml"],
 	contentScriptWhen: "ready",
 	contentScriptFile: "./my-script.js",
 	attachTo: "top",
